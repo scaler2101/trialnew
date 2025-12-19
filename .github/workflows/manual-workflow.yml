@@ -1,0 +1,16 @@
+on:
+  workflow_dispatch:
+    inputs:
+      environment:
+        default: 'dev'
+        required: false
+      version:
+        required: true
+
+jobs:
+  demo:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Print input
+        run: |
+          echo "Environment: ${{ github.event.inputs.environment }}", Version: ${{ github.event.inputs.version }}"
