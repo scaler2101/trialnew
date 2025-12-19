@@ -8,8 +8,10 @@ jobs:
   create_artifact:
     runs-on: ubuntu-latest
     steps:
+      - name: Checkout repository
         uses: actions/checkout@v4
-
+        
+      - name: Create a sample text file
         run: echo "Sample artifact content" > sample.txt
 
       - name: Upload artifact
