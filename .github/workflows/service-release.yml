@@ -14,7 +14,7 @@ on:
 
 jobs:
   release:
-    runs-on: self-hosted-prod
+    runs-on: ubuntu-latest
     steps:
       - name: Print release info
         run: |
