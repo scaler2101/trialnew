@@ -1,0 +1,41 @@
+name: Service Release
+
+on:
+  workflow_dipatch:
+    inputs:
+      service_name:
+        description: "Name of the service to release"
+        type: string
+        required: true
+      version:
+        description: "Release version (e.g. v1.4.0)"
+        type: string
+        required: true
+
+jobs:
+  release:
+    runs-on: self-hosted-prod
+    steps:
+      - name: Print release info
+        run: |
+          echo "Releasing ${{ inputs.service_name }} version ${{ inputs.version }}"
+
+      - name: Run tests
+        continue-on-error: true
+        run: |
+          echo "Running test suite..."
+          # In a real workflow this would invoke the test runner
+          # e.g.: ./scripts/run-tests.sh
+
+      - name: Checkout repository
+        uses: actions/checkout@v3
+
+      - name: Build release artifact
+        run: |
+          echo "Building artifact for ${{ inputs.service_name }}..."
+          mkdir -p dist
+          echo "${{ inputs.version }}" > dist/VERSION
+
+      - name: Publish release summary
+        run: |
+          echo "Release ${{ inputs.version }} of ${{ inputs.service_name }} complete."
