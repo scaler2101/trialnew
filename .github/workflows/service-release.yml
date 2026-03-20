@@ -21,7 +21,7 @@ jobs:
           echo "Releasing ${{ inputs.service_name }} version ${{ inputs.version }}"
 
       - name: Run tests
-        continue-on-error: true
+        
         run: |
           echo "Running test suite..."
           # In a real workflow this would invoke the test runner
